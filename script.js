@@ -10,7 +10,8 @@ var svg = d3.select("#onair_datavis")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
-d3.csv("https://raw.githubusercontent.com/nguyenhotoanthuap97/datavis-hw3/master/top_100.csv", data => {
+// d3.csv("https://raw.githubusercontent.com/nguyenhotoanthuap97/datavis-hw3/master/top_100.csv", data => {
+d3.csv("https://raw.githubusercontent.com/nguyenhotoanthuap97/datavis-hw3/master/top_100-test.csv", data => {
     return {
       person: data.person,
       year_month : d3.timeParse("%Y-%m")(data.year_month),
