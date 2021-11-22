@@ -3,7 +3,7 @@ var gHeight = window.screen.height;
 
 var margin = {top: gHeight/30, right: gWidth/10, bottom: gHeight/20, left: gWidth/7},
     width = gWidth - margin.left - margin.right - gWidth/10,
-    height = gHeight - margin.top - margin.bottom - gHeight/5;
+    height = gHeight - margin.top - margin.bottom - gHeight/4;
 
 var svg = d3.select("#onair_datavis")
   .append("svg")
@@ -65,7 +65,7 @@ d3.csv("https://raw.githubusercontent.com/nguyenhotoanthuap97/datavis-hw3/master
     var res = stat.map(d => { return d.key })
     var color = d3.scaleOrdinal()
       .domain(res)
-      .range(d3.schemeSet3)
+      .range(d3.schemePaired)
 
     // lines
     var lines = svg.selectAll(".line")
@@ -117,7 +117,7 @@ d3.csv("https://raw.githubusercontent.com/nguyenhotoanthuap97/datavis-hw3/master
           lines.style("opacity", 1);
           legends.style("opacity", 1);
         } else {
-          var filtered = lines.style("opacity", 0.2) // Start by setting all opacity to 0.2
+          var filtered = lines.style("opacity", 0.05) // Start by setting all opacity to 0.2
             .filter(function (d) {
               var internalPoints = d.values.filter(
                 v => (xMin <= xScale(v.year_month)) && (xScale(v.year_month) <= xMax));
@@ -156,7 +156,7 @@ d3.csv("https://raw.githubusercontent.com/nguyenhotoanthuap97/datavis-hw3/master
           var mappedKeys = filtered._groups[0].map(entry => {
             return entry.__data__.key;
           });
-          legends.style("opacity", 0.2)
+          legends.style("opacity", 0)
                 .filter(legend => mappedKeys.includes(legend.value.person))
                 .style("opacity", 1);
         }
